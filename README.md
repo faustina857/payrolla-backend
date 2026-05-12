@@ -235,6 +235,7 @@ All protected routes require a valid JWT cookie set during login. Include cookie
 ### Auth endpoints
 
 | Method | Endpoint | Description | Access |
+|---|---|---|---|
 | POST | /auth/register | Create superAdmin (one time) | Public |
 | POST | /auth/login | Login | Public |
 | POST | /auth/logout | Logout | Protected |
