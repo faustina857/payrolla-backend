@@ -39,7 +39,7 @@ app.use(generalLimiter)
 
 // ─── Global Middlewares ───────────────────────────────────
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true, // allows cookies to be sent with requests
 }))
 app.use(express.json()) // parses incoming JSON request bodies
