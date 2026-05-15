@@ -21,6 +21,7 @@ connectDB()
 
 // ─── Initialize App ───────────────────────────────────────
 const app = express()
+app.set('trust proxy', 1) // trust first proxy for correct IP logging
 
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
