@@ -106,6 +106,7 @@ const login = async (data, res, ipAddress, userAgent) => {
   attachCookie(res, token)
 
   // send login notification email
+  try{
   const loginTime = new Date().toLocaleString('en-NG', {
     timeZone: 'Africa/Lagos',
   })
@@ -122,6 +123,9 @@ const login = async (data, res, ipAddress, userAgent) => {
     subject: template.subject,
     html: template.html,
   })
+  } catch (err) {
+    console.error('Login notification email failed:', err.message)
+  }
 
   // remove password from response
   user.password = undefined
