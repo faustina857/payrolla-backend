@@ -5,14 +5,14 @@ const crypto = require('crypto')
 const Loan = require('../loans/loanModel')
 const { createAuditLog } = require('../audit/auditService')
 
-// ─── Generate Employee ID ─────────────────────────────────
+// Generate Employee ID
 const generateEmployeeId = async () => {
   const count = await Employee.countDocuments()
   const padded = String(count + 1).padStart(4, '0')
   return `PR-${padded}`
 }
 
-// ─── Add Employee ─────────────────────────────────────────
+// Add Employee
 const addEmployee = async (data, userId) => {
   const {
     firstName,
@@ -122,7 +122,7 @@ const addEmployee = async (data, userId) => {
   return employee
 }
 
-// ─── Get All Employees ────────────────────────────────────
+// Get All Employees
 const getAllEmployees = async (query) => {
   const {
     page = 1,
@@ -172,7 +172,7 @@ const getAllEmployees = async (query) => {
   }
 }
 
-// ─── Get One Employee ─────────────────────────────────────
+// Get One Employee
 const getEmployee = async (id) => {
   const employee = await Employee.findById(id)
     .populate('departmentId', 'name')
@@ -187,7 +187,7 @@ const getEmployee = async (id) => {
   return employee
 }
 
-// ─── Get Own Profile ──────────────────────────────────────
+// Get Own Profile
 const getMyProfile = async (userId) => {
   const employee = await Employee.findOne({ userId })
     .populate('departmentId', 'name')
@@ -213,7 +213,7 @@ const getMyProfile = async (userId) => {
 
 }
 
-// ─── Update Employee (HR/Admin) ───────────────────────────
+// Update Employee (HR/Admin)
 const updateEmployee = async (id, data, userId) => {
   const employee = await Employee.findById(id)
 
@@ -251,7 +251,7 @@ const updateEmployee = async (id, data, userId) => {
   return updatedEmployee
 }
 
-// ─── Update Own Profile (Employee) ────────────────────────
+// Update Own Profile (Employee)
 const updateMyProfile = async (userId, data) => {
   const employee = await Employee.findOneAndUpdate(
     { userId },
@@ -276,7 +276,7 @@ const updateMyProfile = async (userId, data) => {
   return employee
 }
 
-// ─── Terminate Employee ───────────────────────────────────
+// Terminate Employee
 const terminateEmployee = async (id, data, userId) => {
   const { reason, endDate } = data
 
@@ -316,7 +316,7 @@ const terminateEmployee = async (id, data, userId) => {
   return employee
 }
 
-// ─── Suspend Employee ─────────────────────────────────────
+// Suspend Employee
 const suspendEmployee = async (id, data, userId) => {
   const { reason, suspensionEndDate } = data
 
@@ -359,7 +359,7 @@ const suspendEmployee = async (id, data, userId) => {
   return employee
 }
 
-// ─── Activate Employee ────────────────────────────────────
+// Activate Employee
 const activateEmployee = async (id, data, userId) => {
   const { note } = data || {}
 
@@ -406,7 +406,7 @@ const activateEmployee = async (id, data, userId) => {
   return employee
 }
 
-// ─── Put Employee On Leave ────────────────────────────────
+// Put Employee On Leave
 const putEmployeeOnLeave = async (id, data, userId) => {
   const { type, startDate, endDate, reason } = data
 

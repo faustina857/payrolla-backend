@@ -2,7 +2,7 @@ const payrollService = require('./payrollService')
 const validate = require('../utils/validate')
 const payrollValidation = require('./payrollValidation')
 
-// ─── Create Payroll Run ───────────────────────────────────
+// Create Payroll Run
 const createPayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.createPayrollRun(
@@ -20,7 +20,7 @@ const createPayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Get All Payroll Runs ─────────────────────────────────
+// Get All Payroll Runs
 const getAllPayrollRuns = async (req, res, next) => {
   try {
     const result = await payrollService.getAllPayrollRuns(req.query)
@@ -34,7 +34,7 @@ const getAllPayrollRuns = async (req, res, next) => {
   }
 }
 
-// ─── Get One Payroll Run ──────────────────────────────────
+// Get One Payroll Run─
 const getPayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.getPayrollRun(req.params.id)
@@ -48,7 +48,7 @@ const getPayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Update Draft Payroll Run ─────────────────────────────
+// Update Draft Payroll Run
 const updatePayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.updatePayrollRun(
@@ -66,7 +66,7 @@ const updatePayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Submit Payroll Run ───────────────────────────────────
+// Submit Payroll Run
 const submitPayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.submitPayrollRun(
@@ -85,7 +85,7 @@ const submitPayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Approve Payroll Run ──────────────────────────────────
+// Approve Payroll Run
 const approvePayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.approvePayrollRun(
@@ -105,7 +105,7 @@ const approvePayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Mark Payroll As Paid ─────────────────────────────────
+// Mark Payroll As Paid
 const markAsPaid = async (req, res, next) => {
   try {
     const payroll = await payrollService.markAsPaid(
@@ -123,7 +123,7 @@ const markAsPaid = async (req, res, next) => {
   }
 }
 
-// ─── Cancel Payroll Run ───────────────────────────────────
+// Cancel Payroll Run
 const cancelPayrollRun = async (req, res, next) => {
   try {
     const payroll = await payrollService.cancelPayrollRun(
@@ -142,7 +142,7 @@ const cancelPayrollRun = async (req, res, next) => {
   }
 }
 
-// ─── Payroll Preview ──────────────────────────────────────
+// Payroll Preview
 const getPayrollPreview = async (req, res, next) => {
   try {
     const result = await payrollService.getPayrollPreview(req.params.id)
@@ -156,7 +156,7 @@ const getPayrollPreview = async (req, res, next) => {
   }
 }
 
-// ─── Generate Payment File ────────────────────────────────
+// Generate Payment File
 const generatePaymentFile = async (req, res, next) => {
   try {
     const { csv, period } = await payrollService.generatePaymentFile(

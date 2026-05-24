@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const departmentValidation = {
-  // ─── Create Department ─────────────────────────────────
+  //  Create Department 
   create: Joi.object({
     name: Joi.string().required().min(2).max(100).messages({
       'string.empty': 'Department name is required',
@@ -9,7 +9,7 @@ const departmentValidation = {
     description: Joi.string().max(100).optional(),
     hodId: Joi.string().optional(), // can be assigned later
   }),
-  // ─── Update Department ─────────────────────────────────
+  //  Update Department 
   update: Joi.object({
     name: Joi.string().min(2).max(100).messages({
       'string.empty': 'Department name is required',

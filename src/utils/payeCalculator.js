@@ -33,7 +33,7 @@ const calculatePAYE = (grossAnnualIncome) => {
 }
 
 
-// ─── Calculate Working Days ───────────────────────────────
+// Calculate Working Days
 const getWorkingDaysInMonth = (year, month) => {
   // month is 1-indexed (1 = January, 12 = December)
   const daysInMonth = new Date(year, month, 0).getDate()
@@ -51,7 +51,7 @@ const getWorkingDaysInMonth = (year, month) => {
   return workingDays
 }
 
-// ─── Calculate Working Days Between Two Dates ─────────────
+// Calculate Working Days Between Two Dates
 const getWorkingDaysBetween = (startDate, endDate) => {
   let workingDays = 0
   const current = new Date(startDate)
@@ -72,7 +72,7 @@ const getWorkingDaysBetween = (startDate, endDate) => {
   return workingDays
 }
 
-// ─── Calculate Pro-rate Factor ────────────────────────────
+// Calculate Pro-rate Factor
 const getProRateFactor = (employee, payrollMonth, payrollYear) => {
   const startDate = new Date(employee.startDate)
   const startYear = startDate.getFullYear()
@@ -105,7 +105,7 @@ const getProRateFactor = (employee, payrollMonth, payrollYear) => {
   return 0
 }
 
-// ─── Update calculateDeductions ───────────────────────────
+// Update calculateDeductions
 const calculateDeductions = (employee, loanRepayment = 0, proRateFactor = 1) => {
   const { basicSalary, housing, transport, meal, utility } = employee.salary
 

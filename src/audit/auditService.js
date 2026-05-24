@@ -1,6 +1,6 @@
 const AuditLog = require('./auditModel')
 
-// ─── Create Audit Log ─────────────────────────────────────
+//  Create Audit Log 
 // called internally by other services — not via API
 const createAuditLog = async ({
   performedBy,
@@ -31,7 +31,7 @@ const createAuditLog = async ({
   }
 }
 
-// ─── Get All Audit Logs ───────────────────────────────────
+// Get All Audit Logs
 const getAllAuditLogs = async (query) => {
   const {
     page = 1,
@@ -77,7 +77,7 @@ const getAllAuditLogs = async (query) => {
   }
 }
 
-// ─── Get One Audit Log ────────────────────────────────────
+// Get One Audit Log
 const getAuditLog = async (id) => {
   const log = await AuditLog.findById(id).populate(
     'performedBy',
@@ -93,7 +93,7 @@ const getAuditLog = async (id) => {
   return log
 }
 
-// ─── Get Audit Logs For A Specific Resource ───────────────
+//  Get audit logs for a Specific resource
 const getResourceAuditLogs = async (resourceId) => {
   const logs = await AuditLog.find({ resourceId })
     .populate('performedBy', 'firstName lastName email role')

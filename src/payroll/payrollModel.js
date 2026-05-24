@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const payrollSchema = new mongoose.Schema(
   {
-    // ─── Period ───────────────────────────────────────────────
+    // Period
     month: {
       type: Number,
       required: [true, 'Month is required'],
@@ -25,14 +25,13 @@ const payrollSchema = new mongoose.Schema(
       default: null, // set when payroll is marked as paid
     },
 
-    // ─── Status & Approval Flow ───────────────────────────────
+    // Status & Approval Flow─
     status: {
       type: String,
       enum: ['draft', 'pending', 'approved', 'paid', 'cancelled'],
       default: 'draft',
     },
 
-    // ─── Who Did What ─────────────────────────────────────────
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -57,7 +56,7 @@ const payrollSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Financial Summary ────────────────────────────────────
+    // Financial Summary
     summary: {
       totalEmployees: {
         type: Number,
@@ -93,11 +92,11 @@ const payrollSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Notes ────────────────────────────────────────────────
+    // Notes
     notes: {
       type: String,
       trim: true,
-      default: null, // HR can add notes to a payroll run
+      default: null, 
     },
     submissionNotes: {
       type: String,

@@ -7,7 +7,7 @@ const payrollValidation = require('./payrollValidation')
 
 router.use(protect)
 
-// ─── HR + Admin + SuperAdmin ──────────────────────────────
+// HR + Admin + SuperAdmin
 router.post(
   '/',
   restrictTo('superAdmin', 'admin', 'hr'),
@@ -29,7 +29,7 @@ router.patch(
   payrollController.submitPayrollRun
 )
 
-// ─── SuperAdmin + Admin only ──────────────────────────────
+// SuperAdmin + Admin only
 router.patch(
   '/:id/approve',
   restrictTo('superAdmin', 'admin'),
@@ -62,7 +62,7 @@ router.get(
   payrollController.getPayrollPreview
 )
 
-// ─── dynamic /:id routes last ─────────────────────────────
+// dynamic /:id routes last
 router.get(
   '/:id',
   restrictTo('superAdmin', 'admin', 'hr'),

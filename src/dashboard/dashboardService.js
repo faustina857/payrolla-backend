@@ -5,7 +5,7 @@ const Loan = require('../loans/loanModel')
 const AuditLog = require('../audit/auditModel')
 const User = require('../auth/authModel')
 
-// ─── Admin/SuperAdmin Dashboard ───────────────────────────
+// Admin/SuperAdmin Dashboard
 const getAdminDashboard = async () => {
   const now = new Date()
   const currentMonth = now.getMonth() + 1
@@ -173,7 +173,7 @@ const getAdminDashboard = async () => {
   }
 }
 
-// ─── HR Dashboard ─────────────────────────────────────────
+// HR Dashboard 
 const getHRDashboard = async () => {
   const now = new Date()
   const currentMonth = now.getMonth() + 1
@@ -265,7 +265,7 @@ const getHRDashboard = async () => {
   }
 }
 
-// ─── Employee Dashboard ───────────────────────────────────
+// Employee Dashboard
 const getEmployeeDashboard = async (userId) => {
   const employee = await Employee.findOne({ userId })
     .populate('departmentId', 'name')

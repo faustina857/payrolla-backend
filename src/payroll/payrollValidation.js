@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const payrollValidation = {
-  // ─── Create Payroll Run ───────────────────────────────
+  // Create Payroll Run
   create: Joi.object({
     month: Joi.number().min(1).max(12).required().messages({
       'number.min': 'Month must be between 1 and 12',
@@ -28,17 +28,17 @@ const payrollValidation = {
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Submit Payroll Run ───────────────────────────────
+  // Submit Payroll Run
   submit: Joi.object({
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Approve Payroll Run ──────────────────────────────
+  // Approve Payroll Run
   approve: Joi.object({
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Cancel Payroll Run ───────────────────────────────
+  // Cancel Payroll Run
   cancel: Joi.object({
     reason: Joi.string().trim().required().messages({
       'string.empty': 'Cancellation reason is required',

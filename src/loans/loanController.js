@@ -2,7 +2,7 @@ const loanService = require('./loanService')
 const validate = require('../utils/validate')
 const loanValidation = require('./loanValidation')
 
-// ─── Create Loan ──────────────────────────────────────────
+// Create Loan
 const createLoan = async (req, res, next) => {
   try {
     const loan = await loanService.createLoan(req.body, req.user._id)
@@ -17,7 +17,7 @@ const createLoan = async (req, res, next) => {
   }
 }
 
-// ─── Get All Loans ────────────────────────────────────────
+// Get All Loans
 const getAllLoans = async (req, res, next) => {
   try {
     const result = await loanService.getAllLoans(req.query)
@@ -31,7 +31,7 @@ const getAllLoans = async (req, res, next) => {
   }
 }
 
-// ─── Get One Loan ─────────────────────────────────────────
+// Get One Loan
 const getLoan = async (req, res, next) => {
   try {
     const loan = await loanService.getLoan(req.params.id)
@@ -45,7 +45,7 @@ const getLoan = async (req, res, next) => {
   }
 }
 
-// ─── Get Own Loans (Employee) ─────────────────────────────
+// Get Own Loans (Employee)
 const getMyLoans = async (req, res, next) => {
   try {
     const loans = await loanService.getEmployeeLoans(req.user._id)
@@ -59,7 +59,7 @@ const getMyLoans = async (req, res, next) => {
   }
 }
 
-// ─── Update Loan ──────────────────────────────────────────
+// Update Loan
 const updateLoan = async (req, res, next) => {
   try {
     const loan = await loanService.updateLoan(req.params.id, req.body, req.user._id)
@@ -74,7 +74,7 @@ const updateLoan = async (req, res, next) => {
   }
 }
 
-// ─── Approve Loan ─────────────────────────────────────────
+// Approve Loan
 const approveLoan = async (req, res, next) => {
   try {
     const loan = await loanService.approveLoan(
@@ -93,7 +93,7 @@ const approveLoan = async (req, res, next) => {
   }
 }
 
-// ─── Cancel Loan ──────────────────────────────────────────
+// Cancel Loan
 const cancelLoan = async (req, res, next) => {
   try {
     const loan = await loanService.cancelLoan(req.params.id, req.body, req.user._id)

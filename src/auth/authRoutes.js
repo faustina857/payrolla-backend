@@ -6,7 +6,7 @@ const { protect, restrictTo } = require('./authMiddleware')
 const validate = require('../utils/validate')
 const authValidation = require('./authValidation')
 
-// ─── Rate Limiters ────────────────────────────────────────
+// Rate Limiters
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // max 5 login attempts
@@ -30,7 +30,7 @@ const forgotPasswordLimiter = rateLimit({
 })
 
 
-// ─── Public Routes ────────────────────────────────────────
+// Public Routes 
 // (no authentication required)
 
 // superAdmin registration — one time only
@@ -56,7 +56,7 @@ router.post(
   authController.acceptInvite
 )
 
-// ─── Protected Routes ─────────────────────────────────────
+// Protected Routes 
 // (authentication required)
 
 // get current logged in user

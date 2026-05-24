@@ -2,7 +2,7 @@ const Loan = require('./loanModel')
 const Employee = require('../employees/employeeModel')
 const { createAuditLog } = require('../audit/auditService')
 
-// ─── Create Loan ──────────────────────────────────────────
+// Create Loan
 const createLoan = async (data, userId) => {
   const {
     employeeId,
@@ -85,7 +85,7 @@ const createLoan = async (data, userId) => {
   return loan
 }
 
-// ─── Get All Loans ────────────────────────────────────────
+// Get All Loans
 const getAllLoans = async (query) => {
   const { page = 1, limit = 10, status, employeeId } = query
 
@@ -116,7 +116,7 @@ const getAllLoans = async (query) => {
   }
 }
 
-// ─── Get One Loan ─────────────────────────────────────────
+// Get One Loan
 const getLoan = async (id) => {
   const loan = await Loan.findById(id)
     .populate('employeeId', 'firstName lastName employeeId department')
@@ -131,7 +131,7 @@ const getLoan = async (id) => {
   return loan
 }
 
-// ─── Get Employee Loans ───────────────────────────────────
+// Get Employee Loans
 const getEmployeeLoans = async (userId) => {
   const employee = await Employee.findOne({ userId })
   if (!employee) {
@@ -146,7 +146,7 @@ const getEmployeeLoans = async (userId) => {
   return loans
 }
 
-// ─── Update Loan ──────────────────────────────────────────
+// Update Loan
 const updateLoan = async (id, data, userId) => {
   const loan = await Loan.findById(id)
 
@@ -197,7 +197,7 @@ const updateLoan = async (id, data, userId) => {
   return updatedLoan
 }
 
-// ─── Approve Loan ─────────────────────────────────────────
+// Approve Loan
 const approveLoan = async (id, userId, data) => {
   const loan = await Loan.findById(id)
 
@@ -233,7 +233,7 @@ const approveLoan = async (id, userId, data) => {
   return loan
 }
 
-// ─── Cancel Loan ──────────────────────────────────────────
+// Cancel Loan
 const cancelLoan = async (id, data, userId) => {
   const loan = await Loan.findById(id)
 
@@ -270,7 +270,7 @@ const cancelLoan = async (id, data, userId) => {
   return loan
 }
 
-// ─── Process Loan Deductions ──────────────────────────────
+// Process Loan Deductions
 // called internally by payroll service during payroll run
 const processLoanDeduction = async (employeeId, session) => {
   // find active loan for this employee

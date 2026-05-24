@@ -2,14 +2,14 @@ const mongoose = require('mongoose')
 
 const loanSchema = new mongoose.Schema(
   {
-    // ─── Employee Reference ───────────────────────────────
+    //  Employee Reference
     employeeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Employee',
       required: [true, 'Employee is required'],
     },
 
-    // ─── Loan Details ─────────────────────────────────────
+    //  Loan Details
     loanType: {
       type: String,
       enum: ['salaryAdvance', 'personalLoan', 'emergencyLoan'],
@@ -39,7 +39,7 @@ const loanSchema = new mongoose.Schema(
       default: 0,
     },
 
-    // ─── Dates ────────────────────────────────────────────
+    //  Dates
     startDate: {
       type: Date,
       required: [true, 'Start date is required'],
@@ -53,14 +53,14 @@ const loanSchema = new mongoose.Schema(
       default: null, // set when loan is completed
     },
 
-    // ─── Status ───────────────────────────────────────────
+    // Status 
     status: {
       type: String,
       enum: ['pending', 'active', 'completed', 'cancelled'],
       default: 'pending',
     },
 
-    // ─── Approval ─────────────────────────────────────────
+    //  Approval
     approvedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -71,7 +71,7 @@ const loanSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Notes ────────────────────────────────────────────
+    //  Notes
     notes: {
       type: String,
       trim: true,

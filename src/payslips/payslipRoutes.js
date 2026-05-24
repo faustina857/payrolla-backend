@@ -5,10 +5,10 @@ const { protect, restrictTo } = require('../auth/authMiddleware')
 
 router.use(protect)
 
-// ─── Employee self-service ────────────────────────────────
+// Employee self-service
 router.get('/me', payslipController.getMyPayslips)
 
-// ─── Specific routes before /:id ──────────────────────────
+// Specific routes before /:id
 router.get(
   '/employee/:employeeId',
   restrictTo('superAdmin', 'admin', 'hr'),
@@ -26,13 +26,13 @@ router.get(
   payslipController.downloadPayslip
 )
 
-// ─── Dynamic /:id routes last ─────────────────────────────
+// Dynamic /:id routes last
 router.get(
   '/:id',
   payslipController.getPayslip
 )
 
-// ─── HR/Admin only ────────────────────────────────────────
+// HR/Admin only
 router.get(
   '/',
   restrictTo('superAdmin', 'admin', 'hr'),

@@ -6,26 +6,26 @@ const { sendEmail, emailTemplates } = require('../utils/email')
 const jwt = require('jsonwebtoken')
 const {createAuditLog} = require('../audit/auditService')
 
-// ─── Generate JWT Token ───────────────────────────────────
+// Generate JWT Token
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, jwtSecret, {
     expiresIn: jwtExpiresIn,
   })
 }
 
-// ─── Attach Token to Cookie ───────────────────────────────
+//  Attach Token to Cookie 
 const attachCookie = (res, token) => {
   res.cookie('jwt', token, {
-    httpOnly: true, // not accessible via JavaScript
-    secure: process.env.NODE_ENV === 'production', // https only in production
-    sameSite: 'strict',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     expires: new Date(
       Date.now() + jwtCookieExpiresIn * 24 * 60 * 60 * 1000
     ),
   })
 }
 
-// ─── Register ─────────────────────────────────────────────
+//  Register 
 const register = async (data) => {
   const { firstName, lastName, email, password } = data
 
@@ -70,7 +70,7 @@ const register = async (data) => {
   return user
 }
 
-// ─── Login ────────────────────────────────────────────────
+//  Login 
 const login = async (data, res, ipAddress, userAgent) => {
   const { email, password } = data
 
@@ -149,7 +149,7 @@ const login = async (data, res, ipAddress, userAgent) => {
   return user
 }
 
-// ─── Logout ───────────────────────────────────────────────
+//  Logout 
 const logout = (res) => {
   res.cookie('jwt', 'loggedout', {
     httpOnly: true,
@@ -157,7 +157,7 @@ const logout = (res) => {
   })
 }
 
-// ─── Get Current User ─────────────────────────────────────
+//  Get Current User 
 const getMe = async (userId) => {
   const user = await User.findById(userId).populate('employeeId')
   if (!user) {
@@ -168,11 +168,10 @@ const getMe = async (userId) => {
   return user
 }
 
-// ─── Forgot Password ──────────────────────────────────────
+//  Forgot Password 
 const forgotPassword = async (email) => {
   const user = await User.findOne({ email })
 
-  // we don't reveal if email exists or not — security best practice
   if (!user) return
 
   // generate reset token
@@ -184,7 +183,6 @@ const forgotPassword = async (email) => {
     .update(resetToken)
     .digest('hex')
 
-  // token expires in 10 minutes
   user.passwordResetExpires = Date.now() + 10 * 60 * 1000
 
   await user.save({ validateBeforeSave: false })
@@ -201,9 +199,8 @@ const forgotPassword = async (email) => {
   })
 }
 
-// ─── Reset Password ───────────────────────────────────────
+//  Reset Password 
 const resetPassword = async (token, newPassword) => {
-  // hash the token from the url to compare with db
   const hashedToken = crypto
     .createHash('sha256')
     .update(token)
@@ -245,7 +242,7 @@ const resetPassword = async (token, newPassword) => {
   return user
 }
 
-// ─── Change Password ──────────────────────────────────────
+//  Change Password 
 const changePassword = async (userId, currentPassword, newPassword) => {
   const user = await User.findById(userId).select('+password')
 
@@ -277,7 +274,7 @@ const changePassword = async (userId, currentPassword, newPassword) => {
   return user
 }
 
-// ─── Accept Invite ────────────────────────────────────────
+//  Accept Invite 
 const acceptInvite = async (token, password, res) => {
   // hash the token from the request to compare with db
   const hashedToken = crypto
@@ -321,7 +318,7 @@ const acceptInvite = async (token, password, res) => {
   return user
 }
 
-// ─── Resend Invite ────────────────────────────────────────
+//  Resend Invite 
 const resendInvite = async (employeeId) => {
   const employee = await Employee.findById(employeeId)
   if (!employee) {

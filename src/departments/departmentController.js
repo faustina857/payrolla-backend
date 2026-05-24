@@ -1,6 +1,6 @@
 const departmentService = require('./departmentService')
 
-// ─── Create Department ───────────────────────────────────────
+//  Create Department 
 const createDepartment = async (req, res, next) => {
   try {
     const department = await departmentService.createDepartment(req.body, req.user._id)
@@ -14,7 +14,7 @@ const createDepartment = async (req, res, next) => {
   }
 }
 
-// ─── Get All Departments ────────────────────────────────────
+//  Get All Departments 
 const getAllDepartments = async (req, res, next) => {
   try {
     const result = await departmentService.getAllDepartments(req.query)
@@ -28,7 +28,7 @@ const getAllDepartments = async (req, res, next) => {
   }
 }
 
-// ─── Get Department By ID ─────────────────────────────────
+//  Get Department By ID 
 const getDepartmentById = async (req, res, next) => {
   try { 
     const department = await departmentService.getDepartmentById(req.params.id)
@@ -42,7 +42,7 @@ const getDepartmentById = async (req, res, next) => {
   }
 }
 
-// ─── Update Department ───────────────────────────────────
+//  Update Department
 const updateDepartment = async (req, res, next) => {
   try { 
     const department = await departmentService.updateDepartment(req.params.id, req.body, req.user._id)
@@ -56,7 +56,7 @@ const updateDepartment = async (req, res, next) => {
   }
 }
 
-// ─── Terminate Department ───────────────────────────────────
+//  Terminate Department
 const terminateDepartment = async (req, res, next) => {
   try {
     const department = await departmentService.terminateDepartment(req.params.id, req.user._id)

@@ -8,7 +8,7 @@ const { processLoanDeduction } = require('../loans/loanService')
 const Loan = require('../loans/loanModel')
 const { createAuditLog } = require('../audit/auditService')
 
-// ─── Create Payroll Run ───────────────────────────────────
+// Create Payroll Run
 const createPayrollRun = async (data, userId) => {
   const { month, year } = data
 
@@ -119,7 +119,7 @@ const createPayrollRun = async (data, userId) => {
   return payroll
 }
 
-// ─── Get All Payroll Runs ─────────────────────────────────
+// Get All Payroll Runs
 const getAllPayrollRuns = async (query) => {
   const { page = 1, limit = 10, status, year } = query
 
@@ -150,7 +150,7 @@ const getAllPayrollRuns = async (query) => {
   }
 }
 
-// ─── Get One Payroll Run ──────────────────────────────────
+// Get One Payroll Run
 const getPayrollRun = async (id) => {
   const payroll = await Payroll.findById(id)
     .populate('createdBy', 'firstName lastName email')
@@ -166,7 +166,7 @@ const getPayrollRun = async (id) => {
   return payroll
 }
 
-// ─── Submit Payroll Run ───────────────────────────────────
+// Submit Payroll Run
 const submitPayrollRun = async (id, userId, data) => {
   const payroll = await Payroll.findById(id)
 
@@ -204,7 +204,7 @@ const submitPayrollRun = async (id, userId, data) => {
   return payroll
 }
 
-// ─── Approve Payroll Run ──────────────────────────────────
+// Approve Payroll Run
 const approvePayrollRun = async (id, userId, userRole, data) => {
   const payroll = await Payroll.findById(id)
 
@@ -244,7 +244,7 @@ const approvePayrollRun = async (id, userId, userRole, data) => {
   return payroll
 }
 
-// ─── Mark Payroll As Paid ─────────────────────────────────
+// Mark Payroll As Paid
 const markAsPaid = async (id, userId) => {
   const session = await mongoose.startSession()
   session.startTransaction()
@@ -389,7 +389,7 @@ const markAsPaid = async (id, userId) => {
     throw error
   }
 
-  // ─── send emails completely outside transaction ────────
+  // send emails completely outside transaction──
   for (const { payslip, employee } of createdPayslips) {
     const template = emailTemplates.payslipNotification(
       employee.firstName,
@@ -427,7 +427,7 @@ const markAsPaid = async (id, userId) => {
   return payroll
 }
 
-// ─── Cancel Payroll Run ───────────────────────────────────
+// Cancel Payroll Run
 const cancelPayrollRun = async (id, data, userId) => {
   const payroll = await Payroll.findById(id)
 
@@ -464,7 +464,7 @@ const cancelPayrollRun = async (id, data, userId) => {
   return payroll
 }
 
-// ─── Update Draft Payroll Run ─────────────────────────────
+// Update Draft Payroll Run
 const updatePayrollRun = async (id, data) => {
   const payroll = await Payroll.findById(id)
 
@@ -531,7 +531,7 @@ const updatePayrollRun = async (id, data) => {
   return updatedPayroll
 }
 
-// ─── Payroll Preview ──────────────────────────────────────
+// Payroll Preview
 const getPayrollPreview = async (id) => {
   const payroll = await Payroll.findById(id)
 
@@ -622,7 +622,7 @@ const getPayrollPreview = async (id) => {
   }
 }
 
-// ─── Generate Payment File ────────────────────────────────
+// Generate Payment File
 const generatePaymentFile = async (id) => {
   const payroll = await Payroll.findById(id)
 

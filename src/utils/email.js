@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const { mail, nodeEnv } = require('../config/env')
 
-// ─── Create Transporter ───────────────────────────────────
+// Create Transporter
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: mail.host,
@@ -13,7 +13,7 @@ const createTransporter = () => {
   })
 }
 
-// ─── Send Email ───────────────────────────────────────────
+// Send Email
 const sendEmail = async ({ to, subject, html }) => {
   try {
     const transporter = createTransporter()
@@ -38,7 +38,7 @@ const sendEmail = async ({ to, subject, html }) => {
   }
 }
 
-// ─── Email Templates ──────────────────────────────────────
+// Email Templates
 const emailTemplates = {
   passwordReset: (resetUrl) => ({
     subject: 'Password Reset Request - Payrolla',

@@ -1,6 +1,6 @@
 const auditService = require('./auditService')
 
-// ─── Get All Audit Logs ───────────────────────────────────
+//  Get all audit logs 
 const getAllAuditLogs = async (req, res, next) => {
   try {
     const result = await auditService.getAllAuditLogs(req.query)
@@ -14,7 +14,7 @@ const getAllAuditLogs = async (req, res, next) => {
   }
 }
 
-// ─── Get One Audit Log ────────────────────────────────────
+//  Get one audit log 
 const getAuditLog = async (req, res, next) => {
   try {
     const log = await auditService.getAuditLog(req.params.id)
@@ -28,7 +28,7 @@ const getAuditLog = async (req, res, next) => {
   }
 }
 
-// ─── Get Resource Audit Logs ──────────────────────────────
+//  Get resource audit logs 
 const getResourceAuditLogs = async (req, res, next) => {
   try {
     const logs = await auditService.getResourceAuditLogs(

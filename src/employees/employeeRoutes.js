@@ -5,10 +5,10 @@ const { protect, restrictTo } = require('../auth/authMiddleware')
 const validate = require('../utils/validate')
 const employeeValidation = require('./employeeValidation')
 
-// ─── All routes require authentication ────────────────────
+// All routes require authentication
 router.use(protect)
 
-// ─── Employee self-service routes ─────────────────────────
+// Employee self-service routes
 router.get('/me', employeeController.getMyProfile)
 
 router.patch(
@@ -17,7 +17,7 @@ router.patch(
   employeeController.updateMyProfile
 )
 
-// ─── HR/Admin only routes ─────────────────────────────────
+// HR/Admin only routes
 router.use(restrictTo('superAdmin', 'admin', 'hr'))
 
 router.post(

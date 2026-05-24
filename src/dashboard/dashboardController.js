@@ -1,6 +1,6 @@
 const dashboardService = require('./dashboardService')
 
-// ─── Admin/SuperAdmin Dashboard ───────────────────────────
+// Admin/SuperAdmin Dashboard 
 const getAdminDashboard = async (req, res, next) => {
   try {
     const data = await dashboardService.getAdminDashboard()
@@ -14,7 +14,7 @@ const getAdminDashboard = async (req, res, next) => {
   }
 }
 
-// ─── HR Dashboard ─────────────────────────────────────────
+// HR Dashboard 
 const getHRDashboard = async (req, res, next) => {
   try {
     const data = await dashboardService.getHRDashboard()
@@ -28,7 +28,7 @@ const getHRDashboard = async (req, res, next) => {
   }
 }
 
-// ─── Employee Dashboard ───────────────────────────────────
+// Employee Dashboard 
 const getEmployeeDashboard = async (req, res, next) => {
   try {
     const data = await dashboardService.getEmployeeDashboard(req.user._id)

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const payslipSchema = new mongoose.Schema(
   {
-    // ─── References ───────────────────────────────────────────
+    // References
     employeeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Employee',
@@ -24,7 +24,7 @@ const payslipSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Snapshot of Employee at This Point in Time ───────────
+    // Snapshot of Employee at This Point in Time
     // stored directly so payslip stays accurate even if
     // employee details change later
     employeeSnapshot: {
@@ -41,7 +41,7 @@ const payslipSchema = new mongoose.Schema(
       pensionPin: String,
     },
 
-    // ─── Earnings ─────────────────────────────────────────────
+    // Earnings
     earnings: {
       basicSalary: {
         type: Number,
@@ -71,7 +71,7 @@ const payslipSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Deductions ───────────────────────────────────────────
+    // Deductions
     deductions: {
       paye: {
         type: Number,
@@ -99,7 +99,7 @@ const payslipSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Employer Contributions ───────────────────────────────
+    // Employer Contributions
     // not deducted from employee — paid by company
     employerContributions: {
       employerPension: {
@@ -108,14 +108,14 @@ const payslipSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Net Pay ──────────────────────────────────────────────
+    // Net Pay
     netSalary: {
       type: Number,
       required: true,
       default: 0, // grossSalary - totalDeductions
     },
 
-    // ─── Status ───────────────────────────────────────────────
+    // Status
     status: {
       type: String,
       enum: ['generated', 'sent', 'viewed'],
@@ -131,7 +131,7 @@ const payslipSchema = new mongoose.Schema(
       default: 1,
     },
 
-    // ─── Email Tracking ───────────────────────────────────────
+    // Email Tracking
     emailSent: {
       type: Boolean,
       default: false,

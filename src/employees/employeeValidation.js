@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const employeeValidation = {
-  // ─── Create Employee ───────────────────────────────────
+  // Create Employee
   create: Joi.object({
     // personal info
     firstName: Joi.string().trim().required().messages({
@@ -97,7 +97,7 @@ const employeeValidation = {
     pensionPin: Joi.string().trim().optional(),
   }),
 
-  // ─── Update Employee (HR/Admin) ────────────────────────
+  // Update Employee (HR/Admin)
   update: Joi.object({
     firstName: Joi.string().trim().optional(),
     lastName: Joi.string().trim().optional(),
@@ -138,7 +138,7 @@ const employeeValidation = {
     pensionPin: Joi.string().trim().optional(),
   }),
 
-  // ─── Update Own Profile (Employee) ────────────────────
+  // Update Own Profile (Employee)
   updateMe: Joi.object({
     phone: Joi.string().trim().optional(),
     address: Joi.object({
@@ -150,7 +150,7 @@ const employeeValidation = {
     profilePhoto: Joi.string().trim().optional(),
   }),
 
-  // ─── Terminate Employee ────────────────────────────────
+  // Terminate Employee
   terminate: Joi.object({
     reason: Joi.string().trim().required().messages({
       'string.empty': 'Termination reason is required',

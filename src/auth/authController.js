@@ -2,7 +2,7 @@ const authService = require('./authService')
 const validate = require('../utils/validate')
 const authValidation = require('./authValidation')
 
-// ─── Register (SuperAdmin only, one time) ─────────────────
+// Register (SuperAdmin only, one time)─
 const register = async (req, res, next) => {
   try {
     const user = await authService.register(req.body)
@@ -25,7 +25,7 @@ const register = async (req, res, next) => {
   }
 }
 
-// ─── Login ────────────────────────────────────────────────
+// Login
 const login = async (req, res, next) => {
   try {
     const ipAddress = req.ip || req.headers['x-forwarded-for']
@@ -51,7 +51,7 @@ const login = async (req, res, next) => {
   }
 }
 
-// ─── Logout ───────────────────────────────────────────────
+// Logout
 const logout = (req, res, next) => {
   try {
     authService.logout(res)
@@ -65,7 +65,7 @@ const logout = (req, res, next) => {
   }
 }
 
-// ─── Get Current User ─────────────────────────────────────
+// Get Current User─
 const getMe = async (req, res, next) => {
   try {
     const user = await authService.getMe(req.user._id)
@@ -79,13 +79,13 @@ const getMe = async (req, res, next) => {
   }
 }
 
-// ─── Forgot Password ──────────────────────────────────────
+// Forgot Password
 const forgotPassword = async (req, res, next) => {
   try {
     await authService.forgotPassword(req.body.email)
 
     // always return success even if email doesn't exist
-    // so we don't reveal which emails are registered
+    // so not to reveal which emails are registered
     res.status(200).json({
       status: 'success',
       message: 'If that email exists you will receive a reset link shortly',
@@ -95,7 +95,7 @@ const forgotPassword = async (req, res, next) => {
   }
 }
 
-// ─── Reset Password ───────────────────────────────────────
+// Reset Password
 const resetPassword = async (req, res, next) => {
   try {
     const { token } = req.params
@@ -116,7 +116,7 @@ const resetPassword = async (req, res, next) => {
   }
 }
 
-// ─── Change Password ──────────────────────────────────────
+// Change Password
 const changePassword = async (req, res, next) => {
   try {
     const { currentPassword, newPassword } = req.body
@@ -136,7 +136,7 @@ const changePassword = async (req, res, next) => {
   }
 }
 
-// ─── Accept Invite ────────────────────────────────────────
+// Accept Invite
 const acceptInvite = async (req, res, next) => {
   try {
     const { token, password } = req.body
@@ -161,7 +161,7 @@ const acceptInvite = async (req, res, next) => {
   }
 }
 
-// ─── Resend Invite ────────────────────────────────────────
+// Resend Invite
 const resendInvite = async (req, res, next) => {
   try {
     const employee = await authService.resendInvite(req.params.employeeId)

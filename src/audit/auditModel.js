@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const auditLogSchema = new mongoose.Schema(
   {
-    // ─── Who Did It ───────────────────────────────────────────
     performedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -16,7 +15,7 @@ const auditLogSchema = new mongoose.Schema(
       role: String,
     },
 
-    // ─── What They Did ────────────────────────────────────────
+    //  What They Did 
     action: {
       type: String,
       required: true,
@@ -55,7 +54,7 @@ const auditLogSchema = new mongoose.Schema(
       ],
     },
 
-    // ─── What It Affected ─────────────────────────────────────
+    //  What It Affected 
     // which collection was affected
     module: {
       type: String,
@@ -75,7 +74,7 @@ const auditLogSchema = new mongoose.Schema(
       default: null, // e.g the employee _id that was updated
     },
 
-    // ─── Details ──────────────────────────────────────────────
+    //  Details 
     description: {
       type: String,
       required: true,
@@ -94,7 +93,7 @@ const auditLogSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Request Info ─────────────────────────────────────────
+    //  Request Info
     ipAddress: {
       type: String,
       default: null,

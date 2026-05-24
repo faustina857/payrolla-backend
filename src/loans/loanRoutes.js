@@ -7,11 +7,11 @@ const loanValidation = require('./loanValidation')
 
 router.use(protect)
 
-// ─── Employee self-service ────────────────────────────────
+// Employee self-service
 // employee views their own loans
 router.get('/me', loanController.getMyLoans)
 
-// ─── HR/Admin only ────────────────────────────────────────
+// HR/Admin only
 // create loan
 router.post(
   '/',

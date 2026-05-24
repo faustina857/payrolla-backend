@@ -5,7 +5,7 @@ const { protect, restrictTo } = require('../auth/authMiddleware')
 const validate = require('../utils/validate')
 const departmentValidation = require('./departmentValidation')
 
-// ─── All routes require authentication ────────────────────
+//  All routes require authentication
 router.use(protect)
 router.get('/', departmentController.getAllDepartments)             
 router.get('/:id', departmentController.getDepartmentById)

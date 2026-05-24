@@ -1,6 +1,6 @@
 const employeeService = require('./employeeService')
 
-// ─── Add Employee ─────────────────────────────────────────
+//  Add Employee 
 const addEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.addEmployee(req.body, req.user._id)
@@ -15,7 +15,7 @@ const addEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Get All Employees ────────────────────────────────────
+// Get All Employees 
 const getAllEmployees = async (req, res, next) => {
   try {
     const result = await employeeService.getAllEmployees(req.query)
@@ -29,7 +29,7 @@ const getAllEmployees = async (req, res, next) => {
   }
 }
 
-// ─── Get One Employee ─────────────────────────────────────
+// Get One Employee 
 const getEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.getEmployee(req.params.id)
@@ -43,7 +43,7 @@ const getEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Get Own Profile ──────────────────────────────────────
+// Get Own Profile
 const getMyProfile = async (req, res, next) => {
   try {
     const employee = await employeeService.getMyProfile(req.user._id)
@@ -57,7 +57,7 @@ const getMyProfile = async (req, res, next) => {
   }
 }
 
-// ─── Update Employee (HR/Admin) ───────────────────────────
+//  Update Employee (HR/Admin) 
 const updateEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.updateEmployee(
@@ -76,7 +76,7 @@ const updateEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Update Own Profile (Employee) ────────────────────────
+//  Update Own Profile (Employee) 
 const updateMyProfile = async (req, res, next) => {
   try {
     const employee = await employeeService.updateMyProfile(
@@ -94,7 +94,7 @@ const updateMyProfile = async (req, res, next) => {
   }
 }
 
-// ─── Terminate Employee ───────────────────────────────────
+// Terminate Employee 
 const terminateEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.terminateEmployee(
@@ -113,7 +113,7 @@ const terminateEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Suspend Employee ─────────────────────────────────────
+// Suspend Employee
 const suspendEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.suspendEmployee(req.params.id, req.body, req.user._id)
@@ -127,7 +127,7 @@ const suspendEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Activate Employee ────────────────────────────────────
+// Activate Employee 
 const activateEmployee = async (req, res, next) => {
   try {
     const employee = await employeeService.activateEmployee(req.params.id, req.body, req.user._id)
@@ -141,7 +141,7 @@ const activateEmployee = async (req, res, next) => {
   }
 }
 
-// ─── Put Employee On Leave ────────────────────────────────
+// Put Employee On Leave
 const putEmployeeOnLeave = async (req, res, next) => {
   try {
     const employee = await employeeService.putEmployeeOnLeave(req.params.id, req.body, req.user._id)

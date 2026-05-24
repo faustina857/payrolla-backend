@@ -3,7 +3,7 @@ const Employee = require('../employees/employeeModel')
 const { sendEmail, emailTemplates } = require('../utils/email')
 const { createAuditLog } = require('../audit/auditService')
 
-// ─── Get All Payslips ─────────────────────────────────────
+// Get All Payslips
 const getAllPayslips = async (query) => {
   const {
     page = 1,
@@ -52,7 +52,7 @@ const getAllPayslips = async (query) => {
   }
 }
 
-// ─── Get Employee Payslip History ─────────────────────────
+// Get Employee Payslip History
 const getEmployeePayslips = async (employeeId) => {
   const employee = await Employee.findById(employeeId)
   if (!employee) {
@@ -68,7 +68,7 @@ const getEmployeePayslips = async (employeeId) => {
   return { employee, payslips }
 }
 
-// ─── Get Own Payslips ─────────────────────────────────────
+// Get Own Payslips
 const getMyPayslips = async (userId) => {
   const employee = await Employee.findOne({ userId })
   if (!employee) {
@@ -84,7 +84,7 @@ const getMyPayslips = async (userId) => {
   return payslips
 }
 
-// ─── Get One Payslip ──────────────────────────────────────
+// Get One Payslip
 const getPayslip = async (id, userId, userRole) => {
   const payslip = await Payslip.findById(id)
     .populate('employeeId', 'firstName lastName employeeId departmentId')
@@ -109,7 +109,7 @@ const getPayslip = async (id, userId, userRole) => {
   return payslip
 }
 
-// ─── Generate PDF ─────────────────────────────────────────
+// Generate PDF
 const generatePayslipPDF = async (id, userId, userRole) => {
   const payslip = await getPayslip(id, userId, userRole)
 
@@ -226,7 +226,7 @@ const generatePayslipPDF = async (id, userId, userRole) => {
   return { html, payslip }
 }
 
-// ─── Resend Payslip Email ─────────────────────────────────
+// Resend Payslip Email
 const resendPayslipEmail = async (id, userId) => {
   const payslip = await Payslip.findById(id)
     .populate('employeeId', 'firstName lastName email')

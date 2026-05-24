@@ -1,6 +1,6 @@
 const payslipService = require('./payslipService')
 
-// ─── Get All Payslips ─────────────────────────────────────
+// Get All Payslips
 const getAllPayslips = async (req, res, next) => {
   try {
     const result = await payslipService.getAllPayslips(req.query)
@@ -14,7 +14,7 @@ const getAllPayslips = async (req, res, next) => {
   }
 }
 
-// ─── Get Employee Payslip History ─────────────────────────
+// Get Employee Payslip History
 const getEmployeePayslips = async (req, res, next) => {
   try {
     const result = await payslipService.getEmployeePayslips(
@@ -30,7 +30,7 @@ const getEmployeePayslips = async (req, res, next) => {
   }
 }
 
-// ─── Get Own Payslips ─────────────────────────────────────
+// Get Own Payslips
 const getMyPayslips = async (req, res, next) => {
   try {
     const payslips = await payslipService.getMyPayslips(req.user._id)
@@ -44,7 +44,7 @@ const getMyPayslips = async (req, res, next) => {
   }
 }
 
-// ─── Get One Payslip ──────────────────────────────────────
+// Get One Payslip
 const getPayslip = async (req, res, next) => {
   try {
     const payslip = await payslipService.getPayslip(
@@ -62,7 +62,7 @@ const getPayslip = async (req, res, next) => {
   }
 }
 
-// ─── Download Payslip PDF ─────────────────────────────────
+// Download Payslip PDF
 const downloadPayslip = async (req, res, next) => {
   try {
     const { html, payslip } = await payslipService.generatePayslipPDF(
@@ -90,7 +90,7 @@ const downloadPayslip = async (req, res, next) => {
   }
 }
 
-// ─── Resend Payslip Email ─────────────────────────────────
+// Resend Payslip Email
 const resendPayslipEmail = async (req, res, next) => {
   try {
     const payslip = await payslipService.resendPayslipEmail(req.params.id, req.user._id)

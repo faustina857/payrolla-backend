@@ -2,7 +2,7 @@ const Department = require('./departmentModel')
 const Employee = require('../employees/employeeModel')
 const { createAuditLog } = require('../audit/auditService')
 
-// ─── Create Department ─────────────────────────────────
+//  Create Department 
 const createDepartment = async (data, userId) => {
   const { name, description, hodId } = data
 
@@ -26,7 +26,7 @@ const createDepartment = async (data, userId) => {
   return department
 }
 
-// ─── Get All Departments ─────────────────────────────────
+// Get All Departments 
 const getAllDepartments = async (query) => {
   const { page = 1, limit = 10 } = query
   const skip = (page - 1) * limit
@@ -45,7 +45,7 @@ const getAllDepartments = async (query) => {
   }
 }
 
-// ─── Get Department By ID ─────────────────────────────────
+// Get Department By ID 
 const getDepartmentById = async (id) => {
   const department = await Department.findById(id).populate('hodId', 'firstName lastName email')
   if (!department) {
@@ -56,7 +56,7 @@ const getDepartmentById = async (id) => {
   return department
 }
 
-// ─── Update Department ─────────────────────────────────
+//  Update Department 
 const updateDepartment = async (id, data, userId) => {
   const { name, description, hodId } = data
 
@@ -78,7 +78,7 @@ const updateDepartment = async (id, data, userId) => {
   return department
 }
 
-// ─── Terminate Department ─────────────────────────────────
+//  Terminate Department 
 const terminateDepartment = async (id, userId) => {
   const department = await Department.findById(id)
   if (!department) {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const employeeSchema = new mongoose.Schema(
   {
-    // ─── Personal Info ───────────────────────────────────────
+    // Personal Info 
     firstName: {
       type: String,
       required: [true, 'First name is required'],
@@ -44,12 +44,11 @@ const employeeSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Job Info ─────────────────────────────────────────────
+    // Job Info 
     employeeId: {
       type: String,
       unique: true,
       required: [true, 'Employee ID is required'],
-      // e.g PR-0041 (PR for Payrolla)
     },
     departmentId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -84,7 +83,7 @@ const employeeSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Status History ───────────────────────────────────────
+    // Status History
     suspensionReason: {
       type: String,
       default: null,
@@ -111,7 +110,7 @@ const employeeSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── Salary Structure ─────────────────────────────────────
+    // Salary Structure
     salary: {
       basicSalary: {
         type: Number,
@@ -143,7 +142,7 @@ const employeeSchema = new mongoose.Schema(
       default: null, // e.g 'Level 1', 'Senior', 'Manager'
     },
 
-    // ─── Bank Details ─────────────────────────────────────────
+    // Bank Details
     bankDetails: {
       bankName: {
         type: String,
@@ -159,14 +158,14 @@ const employeeSchema = new mongoose.Schema(
       },
     },
 
-    // ─── Tax & Pension ────────────────────────────────────────
+    // Tax & Pension
     taxIdentificationNumber: {
       type: String,
       trim: true,
       default: null,
     },
     pensionFundAdministrator: {
-      type: String, // e.g 'Stanbic IBTC', 'ARM Pension'
+      type: String, 
       trim: true,
       default: null,
     },
@@ -176,7 +175,7 @@ const employeeSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ─── System Reference ─────────────────────────────────────
+    // System Reference
     // links to the user account of this employee
     userId: {
       type: mongoose.Schema.Types.ObjectId,

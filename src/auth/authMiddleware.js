@@ -54,7 +54,7 @@ const protect = async (req, res, next) => {
   }
 }
 
-// ─── Restrict To ──────────────────────────────────────────
+// Restrict To
 // restricts route access to specific roles
 const restrictTo = (...roles) => {
   return (req, res, next) => {

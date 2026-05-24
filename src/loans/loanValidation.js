@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 const loanValidation = {
-  // ─── Create Loan ───────────────────────────────────────
+  // Create Loan
   create: Joi.object({
     employeeId: Joi.string().required().messages({
       'string.empty': 'Employee is required',
@@ -28,7 +28,7 @@ const loanValidation = {
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Update Loan ───────────────────────────────────────
+  // Update Loan
   update: Joi.object({
     monthlyDeduction: Joi.number().min(100).optional().messages({
       'number.min': 'Minimum monthly deduction is ₦100',
@@ -37,12 +37,12 @@ const loanValidation = {
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Approve Loan ──────────────────────────────────────
+  // Approve Loan
   approve: Joi.object({
     notes: Joi.string().trim().optional(),
   }),
 
-  // ─── Cancel Loan ───────────────────────────────────────
+  // Cancel Loan
   cancel: Joi.object({
     reason: Joi.string().trim().required().messages({
       'string.empty': 'Cancellation reason is required',
