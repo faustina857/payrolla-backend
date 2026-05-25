@@ -151,9 +151,10 @@ const login = async (data, res, ipAddress, userAgent) => {
 
 //  Logout 
 const logout = (res) => {
-  res.cookie('jwt', 'loggedout', {
+  res.clearCookie('jwt', {
     httpOnly: true,
-    expires: new Date(Date.now() + 5 * 1000), // expires in 5 seconds
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   })
 }
 
